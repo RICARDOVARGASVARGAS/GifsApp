@@ -13,7 +13,12 @@ export class GifsService {
   }
 
   searchGifs(query: string) {
-    this._record.unshift(query);
+    query = query.trim().toLowerCase();
+
+    if (!this._record.includes(query)) {
+      this._record.unshift(query);
+      this._record = this._record.splice(0, 10);
+    }
 
     console.log(this._record);
   }
